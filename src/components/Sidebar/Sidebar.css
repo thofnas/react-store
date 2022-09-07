@@ -1,0 +1,13 @@
+.sidebar {
+  background-color: #363636;
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  height: 100%;
+  min-width: 15rem;
+  color: #efefef;
+}
+
+.sidebar-row {
+  margin: 1rem 0 0 1.5rem;
+}

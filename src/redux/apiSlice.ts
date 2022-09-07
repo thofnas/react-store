@@ -18,13 +18,20 @@ interface Product {
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com' }),
   endpoints: (builder) => ({
-    getPosts: builder.query<Product, void>({
+    getPosts: builder.query<Product[], void>({
       query: () => '/products'
     }),
-    getPost: builder.query<Product, void>({
+    getPostsWithCategory: builder.query<Product[], string>({
+      query: (category) => `/products/category/${category}`
+    }),
+    getPost: builder.query<Product, number>({
       query: (id) => `/products/${id}`
     })
   })
 })
 
-export const { useGetPostsQuery } = apiSlice
+export const {
+  useGetPostsQuery,
+  useGetPostsWithCategoryQuery,
+  useGetPostQuery
+} = apiSlice
