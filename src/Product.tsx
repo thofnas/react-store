@@ -1,11 +1,16 @@
 import { useParams, useNavigate } from 'react-router'
 import { skipToken } from '@reduxjs/toolkit/query/react'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { useAppSelector } from './redux/store'
+import { addToCart, removeFromCart } from './redux/cartSlice'
 import { useGetPostQuery } from './redux/apiSlice'
 
 const Product = () => {
+  const cartIDs = useAppSelector((state) => state.cart.cartIDs)
   const { productId } = useParams()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const {
     data: product,
@@ -14,6 +19,8 @@ const Product = () => {
     isError,
     error
   } = useGetPostQuery(Number(productId))
+
+  console.log(cartIDs)
 
   let content
   if (isLoading) {
@@ -25,6 +32,17 @@ const Product = () => {
         <div>
           <p>{product.title}</p>
           <p>{product.description}</p>
+        </div>
+        <div>
+          {!cartIDs.includes(Number(product?.id)) ? (
+            <button onClick={() => dispatch(addToCart(product.id))}>
+              In Cart
+            </button>
+          ) : (
+            <button onClick={() => dispatch(removeFromCart(product.id))}>
+              Remove
+            </button>
+          )}
         </div>
       </div>
     )

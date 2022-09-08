@@ -8,10 +8,9 @@ export default function Sidebar() {
   const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
 
-  const categoryHandler = (value: string) => {
-    navigate('/products')
-    setSearchParams({ category: value })
-  }
+  console.log(
+    searchParams.get("men's clothing") === "men's clothing" && 'active'
+  )
 
   return (
     <div className='sidebar'>
@@ -21,32 +20,51 @@ export default function Sidebar() {
         </Link>
       </div>
       <div className='sidebar-row'>
-        image.png
-        <p>Categoties</p>
+        <p>Categoties:</p>
         <ul>
-          <li
-            className={(searchParams.get('electronics') && 'active') || ''}
-            onClick={() => categoryHandler('electronics')}
-          >
-            Electronics
+          <li>
+            <Link
+              className={
+                searchParams.get('category') === 'electronics' ? 'active' : ''
+              }
+              to='/products?category=electronics'
+            >
+              Electronics
+            </Link>
           </li>
-          <li
-            className={(searchParams.get('jewelery') && 'active') || ''}
-            onClick={() => categoryHandler('jewelery')}
-          >
-            Jewelery
+          <li>
+            <Link
+              className={
+                searchParams.get('category') === 'jewelery' ? 'active' : ''
+              }
+              to='/products?category=jewelery'
+            >
+              Jewelery
+            </Link>
           </li>
-          <li
-            className={(searchParams.get("men's clothing") && 'active') || ''}
-            onClick={() => categoryHandler("men's clothing")}
-          >
-            Men's Clothing
+          <li>
+            <Link
+              className={
+                searchParams.get('category') === "men's clothing"
+                  ? 'active'
+                  : ''
+              }
+              to="/products?category=men's+clothing"
+            >
+              Men's Clothing
+            </Link>
           </li>
-          <li
-            className={(searchParams.get("women's clothing") && 'active') || ''}
-            onClick={() => categoryHandler("women's clothing")}
-          >
-            Women's Clothing
+          <li>
+            <Link
+              className={
+                searchParams.get('category') === "women's clothing"
+                  ? 'active'
+                  : ''
+              }
+              to="/products?category=women's+clothing"
+            >
+              Women's Clothing
+            </Link>
           </li>
         </ul>
       </div>
