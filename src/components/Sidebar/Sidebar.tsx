@@ -1,27 +1,83 @@
+import { useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { useNavigate, useParams } from 'react-router'
 
+import BorderAllRoundedIcon from '@mui/icons-material/BorderAllRounded'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import MonitorIcon from '@mui/icons-material/Monitor'
+import DiamondIcon from '@mui/icons-material/Diamond'
+import Man2RoundedIcon from '@mui/icons-material/Man2Rounded'
+import Woman2RoundedIcon from '@mui/icons-material/Woman2Rounded'
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+
+import { useAppSelector } from '../../redux/store'
+import CartItems from '../CartItems/CartItems'
 import './Sidebar.css'
 
 export default function Sidebar() {
+  const cartIDs = useAppSelector((state) => state.cart.cartIDs)
   let params = useParams()
+  const [isExpanded, setIsExpanded] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
 
-  console.log(
-    searchParams.get("men's clothing") === "men's clothing" && 'active'
-  )
+  let sidebarStyles = {}
+  let cart = <></>
+  if (isExpanded) {
+    sidebarStyles = {
+      maxWidth: '16rem',
+      minWidth: '16rem'
+    }
+    cart = (
+      <div>
+        <p>Cart:</p>
+        <CartItems />
+      </div>
+    )
+  } else {
+    sidebarStyles = {
+      maxWidth: '4.2rem',
+      minWidth: '4.2rem'
+    }
+    cart = (
+      <div className='cart' onClick={() => setIsExpanded(!isExpanded)}>
+        <div className='icon-container'>
+          <ShoppingCartOutlinedIcon />
+        </div>
+        <div className='cart-badge'>
+          <p>{cartIDs.length}</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className='sidebar'>
-      <div className='sidebar-row'>
-        <Link to='/products' style={{ color: '#efefef' }}>
-          Store
-        </Link>
+    <div className='sidebar' style={sidebarStyles}>
+      <div
+        className='close-sidebar-button'
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <ArrowBackIcon
+          style={isExpanded ? { rotate: 'none' } : { rotate: '180deg' }}
+        />
       </div>
-      <div className='sidebar-row'>
-        <p>Categoties:</p>
+      <div className='sidebar-title'>
+        <Link to='/products'>Fake Store</Link>
+      </div>
+
+      <div>
         <ul>
+          <li>
+            <Link
+              className={searchParams.get('category') === null ? 'active' : ''}
+              to='/products'
+            >
+              <div className='icon-container'>
+                <BorderAllRoundedIcon />
+              </div>
+              <div className='category-title'>Browse All</div>
+            </Link>
+          </li>
           <li>
             <Link
               className={
@@ -29,9 +85,13 @@ export default function Sidebar() {
               }
               to='/products?category=electronics'
             >
-              Electronics
+              <div className='icon-container'>
+                <MonitorIcon />
+              </div>
+              <div className='category-title'>Electronics</div>
             </Link>
           </li>
+
           <li>
             <Link
               className={
@@ -39,7 +99,10 @@ export default function Sidebar() {
               }
               to='/products?category=jewelery'
             >
-              Jewelery
+              <div className='icon-container'>
+                <DiamondIcon />
+              </div>
+              <div className='category-title'>Jewelry</div>
             </Link>
           </li>
           <li>
@@ -51,7 +114,10 @@ export default function Sidebar() {
               }
               to="/products?category=men's+clothing"
             >
-              Men's Clothing
+              <div className='icon-container'>
+                <Man2RoundedIcon />
+              </div>
+              <div className='category-title'>Men's&nbsp;Clothing</div>
             </Link>
           </li>
           <li>
@@ -63,11 +129,16 @@ export default function Sidebar() {
               }
               to="/products?category=women's+clothing"
             >
-              Women's Clothing
+              <div className='icon-container'>
+                <Woman2RoundedIcon />
+              </div>
+              <div className='category-title'>Women's&nbsp;Clothing</div>
             </Link>
           </li>
         </ul>
       </div>
+      <hr />
+      <div>{cart}</div>
     </div>
   )
 }

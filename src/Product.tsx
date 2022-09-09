@@ -8,9 +8,9 @@ import { useGetPostQuery } from './redux/apiSlice'
 
 const Product = () => {
   const cartIDs = useAppSelector((state) => state.cart.cartIDs)
+  const dispatch = useDispatch()
   const { productId } = useParams()
   const navigate = useNavigate()
-  const dispatch = useDispatch()
 
   const {
     data: product,
@@ -19,8 +19,6 @@ const Product = () => {
     isError,
     error
   } = useGetPostQuery(Number(productId))
-
-  console.log(cartIDs)
 
   let content
   if (isLoading) {

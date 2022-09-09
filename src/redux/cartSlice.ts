@@ -17,9 +17,8 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       const index = state.cartIDs.indexOf(action.payload)
-      if (index > -1) {
-        // only splice array when id is found
-        state.cartIDs.splice(index, 1) // 2nd parameter means remove one item only
+      if (index >= 0) {
+        state.cartIDs.splice(index, 1)
       }
     },
     clearCart: (state) => {

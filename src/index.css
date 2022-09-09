@@ -17,9 +17,11 @@ p {
   margin: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 0.4rem;
+  padding: 0.5rem;
 }
 
 .App {
@@ -34,5 +36,6 @@ code {
   min-height: 0;
   min-width: 0;
   width: 100%;
-  grid-template-columns: repeat(auto-fill, 200px);
+  transition-duration: 100ms;
+  grid-template-columns: repeat(auto-fill, 14.5rem);
 }
