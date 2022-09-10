@@ -25,12 +25,11 @@ export default function Sidebar() {
   let cart = <></>
   if (isExpanded) {
     sidebarStyles = {
-      maxWidth: '16rem',
-      minWidth: '16rem'
+      maxWidth: '18rem',
+      minWidth: '18rem'
     }
     cart = (
       <div>
-        <p>Cart:</p>
         <CartItems />
       </div>
     )
@@ -137,8 +136,14 @@ export default function Sidebar() {
           </li>
         </ul>
       </div>
-      <hr />
-      <div>{cart}</div>
+      {cartIDs.length !== 0 && (
+        <>
+          <div
+            style={{ borderBottom: '1px solid #eee', margin: '1rem 1.3rem' }}
+          ></div>
+          <div>{cart}</div>
+        </>
+      )}
     </div>
   )
 }

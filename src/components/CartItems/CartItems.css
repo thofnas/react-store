@@ -1,0 +1,36 @@
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  padding: 0 1.3rem;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.cart-image-container {
+  display: flex;
+  align-items: center;
+  padding-right: 1rem;
+  max-width: 3rem;
+}
+
+.cart-image-container img {
+  width: 100%;
+}
+
+.cart-buttons-container {
+  display: flex;
+  align-items: center;
+}
+
+.cart-buttons-container button {
+  border-radius: 0;
+  padding: 0 0.6rem;
+}
+
+.cart-buttons-container button:first-child {
+  border-radius: 1rem 0 0 1rem;
+}
+
+.cart-buttons-container button:not(:first-child) {
+  border-radius: 0 1rem 1rem 0;
+}

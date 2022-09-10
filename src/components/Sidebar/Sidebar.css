@@ -1,18 +1,18 @@
 .sidebar {
-  background-color: #363636;
   position: sticky;
   top: 0;
-  min-height: 100vh;
-  height: 100%;
-  color: #efefef;
+  height: 100vh;
+  color: #363636;
   overflow-x: hidden;
   transition-duration: 100ms;
+  border-right: 1px solid #eee;
   padding: 0 0.1rem;
+  overflow: scroll;
 }
 
 .sidebar-title {
   font-size: 2rem;
-  margin-left: 2rem;
+  margin: 0 0 1rem 2rem;
   margin-top: 0.5rem;
 }
 
@@ -21,7 +21,7 @@
 }
 
 a {
-  color: #efefef;
+  color: #363636;
   text-decoration: none;
 }
 
@@ -33,7 +33,7 @@ ul {
 
 ul li a {
   display: flex;
-  color: #bbb;
+  color: #363636;
 }
 
 ul li a div {
@@ -41,28 +41,29 @@ ul li a div {
   align-items: center;
 }
 
-li > .active {
-  color: #efefef;
+li > .active > .icon-container {
+  background-color: #ddd;
+  color: #000;
 }
-
-hr {
-  margin: 1rem 1.3rem;
+li > .active:hover > .icon-container {
+  background-color: #ccc;
+  color: #000;
 }
 
 ul li:hover .icon-container {
-  background-color: #424242;
+  background-color: #eee;
 }
 
 .close-sidebar-button {
   position: absolute;
   right: 0;
   padding: 0.8rem 1rem;
-  background-color: #3b3b3b;
+  background-color: #eee;
   cursor: pointer;
 }
 
 .close-sidebar-button:hover {
-  background-color: #424242;
+  background-color: #ccc;
 }
 
 .close-sidebar-button svg {
@@ -84,7 +85,7 @@ ul li:hover .icon-container {
 }
 
 .cart:hover .icon-container {
-  background-color: #424242;
+  background-color: #eee;
 }
 
 .cart-badge {
