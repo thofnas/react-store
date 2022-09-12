@@ -33,8 +33,9 @@ button {
   display: grid;
   justify-items: center;
   justify-content: center;
-  min-height: 0;
   min-width: 0;
+  max-width: 1680px;
+  margin: 0 auto;
   width: 100%;
   transition-duration: 100ms;
   grid-template-columns: repeat(auto-fill, 14.5rem);

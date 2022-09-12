@@ -27,7 +27,7 @@ interface Product {
 export default function ProductsList() {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const {
+  let {
     data: products,
     isLoading,
     isSuccess,
@@ -46,7 +46,11 @@ export default function ProductsList() {
       <ProductItem key={product.id} product={product}></ProductItem>
     ))
   } else if (isError) {
-    content = <div>{error.toString()}</div>
+    content = <div>{error?.toString()}</div>
   }
-  return <div className='product-list'>{content}</div>
+  return (
+    <div style={{ width: '100%' }}>
+      <div className='product-list'>{content}</div>
+    </div>
+  )
 }

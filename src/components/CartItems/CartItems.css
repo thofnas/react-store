@@ -1,7 +1,17 @@
+.cart-wrapper {
+  position: relative;
+}
+.cart-container {
+  margin: 0 1.3rem;
+}
+
+.cart-wrapper .MuiSvgIcon-root {
+  font-size: 1rem !important;
+}
+
 .cart-item {
   display: flex;
   flex-direction: row;
-  padding: 0 1.3rem;
   font-size: 0.9rem;
   margin-bottom: 1rem;
 }
@@ -33,4 +43,24 @@
 
 .cart-buttons-container button:not(:first-child) {
   border-radius: 0 1rem 1rem 0;
+}
+
+.cart-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cart-item-title {
+  margin-bottom: 1rem;
+}
+
+.cart-item-title:hover p {
+  text-decoration: underline;
+}
+
+.cart-item-title,
+.cart-image-container {
+  cursor: pointer;
 }

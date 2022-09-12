@@ -139,7 +139,10 @@ export default function Sidebar() {
       {cartIDs.length !== 0 && (
         <>
           <div
-            style={{ borderBottom: '1px solid #eee', margin: '1rem 1.3rem' }}
+            style={{
+              borderBottom: '1px solid #eee',
+              margin: '1rem 1.3rem 0 1.3rem'
+            }}
           ></div>
           <div>{cart}</div>
         </>
