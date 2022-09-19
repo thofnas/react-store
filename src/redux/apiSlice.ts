@@ -16,6 +16,8 @@ interface Product {
 }
 
 export const apiSlice = createApi({
+  reducerPath: 'products',
+  refetchOnFocus: true,
   baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com' }),
   endpoints: (builder) => ({
     getPosts: builder.query<Product[], void>({

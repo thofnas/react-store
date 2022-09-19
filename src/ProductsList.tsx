@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useSearchParams } from 'react-router-dom'
-import { useParams } from 'react-router'
 import { skipToken } from '@reduxjs/toolkit/query/react'
 
 import {
@@ -25,7 +24,7 @@ interface Product {
 }
 
 export default function ProductsList() {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
 
   let {
     data: products,
@@ -34,8 +33,10 @@ export default function ProductsList() {
     isError,
     error
   } = searchParams.get('category')
-    ? useGetPostsWithCategoryQuery(searchParams.get('category') ?? skipToken)
-    : useGetPostsQuery()
+    ? useGetPostsWithCategoryQuery(searchParams.get('category') ?? skipToken, {
+        refetchOnFocus: true
+      })
+    : useGetPostsQuery(undefined, { refetchOnFocus: true })
 
   let content
 
